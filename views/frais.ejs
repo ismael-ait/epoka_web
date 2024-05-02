@@ -6,11 +6,53 @@
   <title>Paiement des frais</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
+
     <%- include('header'); %>
 
+    <h1>Paiement des missions</h1>
 
-    <p>Frais</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du salarié</th>
+                <th>Prénom du salarié</th>
+                <th>Début de la mission</th>
+                <th>Fin de la mission</th>
+                <th>Lieu de la mission</th>
+                <th>Montant</th>
+                <th>Paiement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% missions.forEach(function(mission) { %>
+                <tr>
+                    <td><%= mission.nom_salarie %></td>
+                    <td><%= mission.prenom_salarie %></td>
+                    <td><%= formatDate(mission.date_depart) %></td>
+                    <td><%= formatDate(mission.date_fin) %></td>
+                    <td><%= mission.commune_arrivee %></td>
+                    <td><%= mission.montant %></td> <!-- Affichage du montant -->
+                    <td>
+                        <% if (mission.paye === 1) { %>
+                            Remboursée
+                        <% } else { %>
+                            <form action="/rembourser" method="post">
+                                <input type="hidden" name="missionId" value="<%= mission.id %>">
+                                <button type="submit">Rembourser</button>
+                            </form>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <% function formatDate(dateString) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('fr-FR', options);
+    } %>
+
 </body>
 </html>
