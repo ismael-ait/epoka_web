@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Connexion</h1>
+    <form action="/login" method="post">
+        <label for="id_salarie">
+            <!-- font awesome icon -->
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="id_salarie" placeholder="Identifiant salarié" id="id_salarie" required>
+        <label for="mdp_salarie">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="mdp_salarie" placeholder="Mot de passe" id="mdp_salarie" required>
+        <input type="submit" value="Login">
+    </form>
+    
+  </div>
+</body>
+</html>

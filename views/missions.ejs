@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parametrages</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <%- include('header'); %>
+
+    <h2>Liste des Missions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Salarié</th>
+                <th>Commune</th>
+                <th>Date Départ</th>
+                <th>Date Fin</th>
+                <th>Validation</th>
+                <th>Paiement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% missions.forEach(mission => { %>
+                <tr>
+                    <td><%= mission.id %></td>
+                    <td><%= mission.id_salarie %></td>
+                    <td><%= mission.id_commune %></td>
+                    <td><%= formatDate(mission.date_depart) %></td>
+                    <td><%= formatDate(mission.date_fin) %></td>
+                    <td>
+                        <% if (mission.valide === 1) { %>
+                            Validé
+                            <% } else { %>
+                                <form id="form<%= mission.id %>" action="/validerMission" method="POST">
+                                    <input type="hidden" name="missionId" value="<%= mission.id %>">
+                                    <button type="submit" form="form<%= mission.id %>">Valider</button>
+                                </form>
+                        <% } %>
+                        <% function formatDate(dateString) {
+                          const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                          const date = new Date(dateString);
+                          return date.toLocaleDateString('fr-FR', options);
+                      } %>
+                      
+                    </td>
+                    <td>
+                        <% if (mission.paye === 1) { %>
+                            Payé
+                        <% } %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+</body>
+</html>
