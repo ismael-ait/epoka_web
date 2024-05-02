@@ -56,7 +56,23 @@
  <h2>Distance entre villes déjà saisies</h2>
 
  <table>
-  <tr>
+  <thead>
+      <tr>
+          <th>De</th>
+          <th>À</th>
+          <th>Km</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% distances.forEach(distance => { %>
+          <tr>
+              <td><%= distance.nom_depart %></td>
+              <td><%= distance.nom_arrivee %></td>
+              <td><%= distance.distance %> km</td>
+          </tr>
+      <% }); %>
+  </tbody>
+</table>
 
 
 

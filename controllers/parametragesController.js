@@ -1,4 +1,7 @@
 const Commune = require('../models/parametragesModel');
+const Distance = require('../models/parametragesModel');
+
+
 
 const parametragesController = {
     async renderParametragesPage(req, res) {
@@ -6,7 +9,8 @@ const parametragesController = {
       if (user && user.comptable_bool === 1) {
         try {
           const communes = await Commune.getAllCommunes();
-          res.render('parametrages', { communes });
+          const distances = await Distance.getAllDistances();
+          res.render('parametrages', { communes, distances });
         } catch (error) {
           res.status(500).send("Erreur lors de la récupération des communes.");
         }
@@ -31,7 +35,9 @@ async insertDistance(req, res) {
     } catch (error) {
       res.status(500).send("Erreur lors de l'insertion de la distance.");
     }
-  }
+  },
+
+
 };
 
 
