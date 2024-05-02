@@ -3,13 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parametrages</title>
+  <title>Paramétrages</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
     <%- include('header'); %>
 
-    <p>Parametrages</p>
+  <h1>Paramétrage de l'application</h1>
+
+  <h2>Montant du remboursement au kilomètre</h2>
+
+  <form action="/submit_remboursement" method="post">
+    <div>
+      <label for="remboursement_km">Remboursement au kilomètre :</label>
+      <input type="text" id="remboursement_km" name="remboursement_km">
+    </div>
+    <div>
+      <label for="indemnite_hebergement">Indemnité d'hébergement :</label>
+      <input type="text" id="indemnite_hebergement" name="indemnite_hebergement">
+    </div>
+    <button type="submit">Valider</button>
+  </form>
+
+  <h2>Distance entre villes</h2>
+
+  <form action="/ajoutDistance" method="post" id="distanceForm">
+    <div>
+      <label for="depart">De :</label>
+      <select id="depart" name="id_commune1">
+        <% communes.forEach(commune => { %>
+          <option value="<%= commune.id_commune %>"><%= commune.nom_commune %></option>
+        <% }); %>
+      </select>
+     
+    </div>
+    <div>
+      <label for="arrivee">À :</label>
+      <select id="arrivee" name="id_commune2">
+        <% communes.forEach(commune => { %>
+          <option value="<%= commune.id_commune %>"><%= commune.nom_commune %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div>
+      <label for="distance_km">Distance en km :</label>
+      <input type="text" id="distance" name="distance">
+    </div>
+    <button type="submit">Valider</button>
+  </form>
+
+ <h2>Distance entre villes déjà saisies</h2>
+
+ <table>
+  <tr>
+
+
+
 </body>
 </html>
