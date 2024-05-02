@@ -4,14 +4,25 @@ const pool = require('../config/database');
 
 async function getAllMissions() {
     try {
-        // Exécuter une requête pour récupérer toutes les missions
-        const [rows, fields] = await pool.query("SELECT * FROM mission");
+        const query = `
+            SELECT m.id, s.nom_salarie, s.prenom_salarie, 
+                   c_depart.nom_commune AS commune_depart,
+                   c_arrivee.nom_commune AS commune_arrivee,
+                   m.date_depart, m.date_fin, m.valide, m.paye
+            FROM mission m
+            INNER JOIN salaries s ON m.id_salarie = s.id_salarie
+            INNER JOIN agence a ON s.id_agence = a.id_agence
+            INNER JOIN commune c_depart ON a.id_commune = c_depart.id_commune
+            INNER JOIN commune c_arrivee ON m.id_commune = c_arrivee.id_commune
+        `;
+        const [rows, fields] = await pool.query(query);
         return rows;
     } catch (error) {
         console.error("Erreur lors de la récupération des missions :", error);
         throw error;
     }
 }
+
 
 
 async function validerMission(idMission) {

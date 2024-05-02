@@ -10,6 +10,7 @@ const fraisController = {
             try {
                 // Récupérer toutes les missions avec les détails depuis le modèle
                 const missions = await fraisModel.getAllMissions();
+                console.log(missions);
 
                 // Rendre la vue frais en transmettant les missions récupérées
                 res.render('frais', { missions: missions });

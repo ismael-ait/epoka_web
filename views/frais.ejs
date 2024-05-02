@@ -15,10 +15,10 @@
     <table>
         <thead>
             <tr>
-                <th>Nom du salarié</th>
-                <th>Prénom du salarié</th>
+                <th>Salarié</th>
                 <th>Début de la mission</th>
                 <th>Fin de la mission</th>
+                <th>Commune de départ</th>
                 <th>Lieu de la mission</th>
                 <th>Montant</th>
                 <th>Paiement</th>
@@ -27,11 +27,11 @@
         <tbody>
             <% missions.forEach(function(mission) { %>
                 <tr>
-                    <td><%= mission.nom_salarie %></td>
-                    <td><%= mission.prenom_salarie %></td>
+                    <td><%= mission.nom_salarie %> <%= mission.prenom_salarie %></td>
                     <td><%= formatDate(mission.date_depart) %></td>
                     <td><%= formatDate(mission.date_fin) %></td>
-                    <td><%= mission.commune_arrivee %></td>
+                    <td><%= mission.nom_commune_depart %></td>
+                    <td><%= mission.nom_commune_arrivee %></td>
                     <td><%= mission.montant %></td> <!-- Affichage du montant -->
                     <td>
                         <% if (mission.paye === 1) { %>

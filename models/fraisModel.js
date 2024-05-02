@@ -3,13 +3,23 @@ const pool = require('../config/database');
 async function getAllMissions() {
     try {
         const query = `
-            SELECT m.id, s.nom_salarie, s.prenom_salarie, 
-                   m.id_commune AS id_commune_arrivee,
-                   a.id_commune AS id_commune_depart,
-                   m.date_depart, m.date_fin, m.valide, m.paye
-            FROM mission m
-            INNER JOIN salaries s ON m.id_salarie = s.id_salarie
-            INNER JOIN agence a ON s.id_agence = a.id_agence
+        SELECT m.id, 
+        s.nom_salarie, 
+        s.prenom_salarie, 
+        m.id_commune AS id_commune_arrivee,
+        a.id_commune AS id_commune_depart,
+        m.date_depart, 
+        m.date_fin, 
+        m.valide, 
+        m.paye,
+        c_depart.nom_commune AS nom_commune_depart,
+        c_arrivee.nom_commune AS nom_commune_arrivee
+ FROM mission m
+ INNER JOIN salaries s ON m.id_salarie = s.id_salarie
+ INNER JOIN agence a ON s.id_agence = a.id_agence
+ INNER JOIN commune c_depart ON a.id_commune = c_depart.id_commune
+ INNER JOIN commune c_arrivee ON m.id_commune = c_arrivee.id_commune
+ 
         `;
         const [rows, fields] = await pool.query(query);
 

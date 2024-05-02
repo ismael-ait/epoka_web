@@ -17,7 +17,8 @@
             <tr>
                 <th>ID</th>
                 <th>Salarié</th>
-                <th>Commune</th>
+                <th>Commune de départ</th>
+                <th>Commune d'arrivée</th>
                 <th>Date Départ</th>
                 <th>Date Fin</th>
                 <th>Validation</th>
@@ -28,18 +29,19 @@
             <% missions.forEach(mission => { %>
                 <tr>
                     <td><%= mission.id %></td>
-                    <td><%= mission.id_salarie %></td>
-                    <td><%= mission.id_commune %></td>
+                    <td><%= mission.nom_salarie %> <%= mission.prenom_salarie %></td>
+                    <td><%= mission.commune_depart %></td>
+                    <td><%= mission.commune_arrivee %></td>
                     <td><%= formatDate(mission.date_depart) %></td>
                     <td><%= formatDate(mission.date_fin) %></td>
                     <td>
                         <% if (mission.valide === 1) { %>
                             Validé
-                            <% } else { %>
-                                <form id="form<%= mission.id %>" action="/validerMission" method="POST">
-                                    <input type="hidden" name="missionId" value="<%= mission.id %>">
-                                    <button type="submit" form="form<%= mission.id %>">Valider</button>
-                                </form>
+                        <% } else { %>
+                            <form id="form<%= mission.id %>" action="/validerMission" method="POST">
+                                <input type="hidden" name="missionId" value="<%= mission.id %>">
+                                <button type="submit" form="form<%= mission.id %>">Valider</button>
+                            </form>
                         <% } %>
                         <% function formatDate(dateString) {
                           const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
