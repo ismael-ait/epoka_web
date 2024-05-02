@@ -41,24 +41,25 @@ async function getAllDistances() {
     }
 }
 
-async function insertRemboursement(montant_km, montant_journee) {
+async function updateRemboursement(montant_km, montant_journee) {
     try {
-        const [insertRows, _] = await pool.query("INSERT INTO parametres (montant_km, montant_journee) VALUES (?, ?)", [montant_km, montant_journee]);
-        if (insertRows.affectedRows > 0) {
-            return { success: true, message: "Remboursement inséré avec succès." };
+        const [updateRows, _] = await pool.query("UPDATE parametres SET montant_km = ?, montant_journee = ?", [montant_km, montant_journee]);
+        if (updateRows.affectedRows > 0) {
+            return { success: true, message: "Remboursement mis à jour avec succès." };
         } else {
-            return { success: false, message: "Le remboursement n'a pas pu être inséré." };
+            return { success: false, message: "Le remboursement n'a pas pu être mis à jour." };
         }
     } catch (error) {
-        console.error("Erreur lors de l'insertion de la distance :", error);
+        console.error("Erreur lors de la mise à jour du remboursement :", error);
         throw error;
     }
 }
+
 
 
 module.exports = {
     getAllCommunes,
     insertDistance,
     getAllDistances,
-    insertRemboursement
+    updateRemboursement
 };

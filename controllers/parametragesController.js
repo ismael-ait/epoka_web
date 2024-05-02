@@ -37,14 +37,14 @@ async insertDistance(req, res) {
     }
   },
 
-  async insertRemboursement(req, res) {
+  async updateRemboursement(req, res) {
     const { montant_km, montant_journee } = req.body;
     const communes = await Commune.getAllCommunes();
     const distances = await Distance.getAllDistances();
     
 
     try {
-      const result = await Commune.insertRemboursement(montant_km, montant_journee);
+      const result = await Commune.updateRemboursement(montant_km, montant_journee);
       
       if (result.success) {
         // Rediriger vers la même page pour rafraîchir les données
