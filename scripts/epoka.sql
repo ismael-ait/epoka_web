@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `agence`;
 CREATE TABLE IF NOT EXISTS `agence` (
   `id_agence` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom_agence` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom_agence` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_commune` bigint UNSIGNED NOT NULL,
   PRIMARY KEY (`id_agence`),
   KEY `agence_id_commune_foreign` (`id_commune`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `agence`
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `commune` (
   `population` bigint NOT NULL,
   `categorie` bigint NOT NULL,
   PRIMARY KEY (`id_commune`)
-) ENGINE=InnoDB AUTO_INCREMENT=28541 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28541 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `commune`
@@ -14362,7 +14362,7 @@ CREATE TABLE IF NOT EXISTS `distance` (
   `distance` bigint NOT NULL,
   KEY `distance_id_commune2_foreign` (`id_commune2`),
   KEY `distance_id_commune1_foreign` (`id_commune1`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -14382,7 +14382,7 @@ CREATE TABLE IF NOT EXISTS `mission` (
   PRIMARY KEY (`id`),
   KEY `mission_id_commune_foreign` (`id_commune`),
   KEY `mission_id_salarie_foreign` (`id_salarie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -14394,7 +14394,7 @@ DROP TABLE IF EXISTS `parametres`;
 CREATE TABLE IF NOT EXISTS `parametres` (
   `montant_km` double(8,2) NOT NULL,
   `montant_journee` double(8,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -14415,7 +14415,7 @@ CREATE TABLE IF NOT EXISTS `salaries` (
   PRIMARY KEY (`id_salarie`),
   KEY `salaries_id_responsable_foreign` (`id_responsable`),
   KEY `salaries_id_agence_foreign` (`id_agence`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `salaries`
