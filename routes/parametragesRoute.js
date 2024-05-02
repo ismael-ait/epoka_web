@@ -7,5 +7,7 @@ router.get('/parametrages', parametragesController.renderParametragesPage);
 
 // Soumettre les données du formulaire de distance entre villes
 router.post('/ajoutDistance', parametragesController.insertDistance);
+router.post('/ajoutRemboursement', parametragesController.insertRemboursement);
+
 
 module.exports = router;

@@ -37,6 +37,26 @@ async insertDistance(req, res) {
     }
   },
 
+  async insertRemboursement(req, res) {
+    const { montant_km, montant_journee } = req.body;
+    const communes = await Commune.getAllCommunes();
+    const distances = await Distance.getAllDistances();
+    
+
+    try {
+      const result = await Commune.insertRemboursement(montant_km, montant_journee);
+      
+      if (result.success) {
+        // Rediriger vers la même page pour rafraîchir les données
+        res.render('parametrages', {communes, distances});
+      } else {
+        res.status(400).send(result.message);
+      }
+    } catch (error) {
+      res.status(500).send("Erreur lors de l'insertion de la distance.");
+    }
+  }
+
 
 };
 
